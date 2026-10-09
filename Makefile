@@ -1,4 +1,4 @@
-.PHONY: help install dev build lint format test test-e2e check-traceability check
+.PHONY: help install dev build lint format test test-watch check-traceability check docker-dev docker-build docker-down
 
 CYAN := \033[36m
 RESET := \033[0m
@@ -16,20 +16,25 @@ dev: ## Inicia o servidor local de desenvolvimento
 build: ## Executa o build de produção
 	npm run build
 
-lint: ## Executa a verificação estática de código (ESLint e TypeScript)
+lint: ## Executa a verificação estática de tipos (TypeScript)
 	npm run lint
-	npx tsc --noEmit
-
-format: ## Formata o código com Prettier
-	npm run format
 
 test: ## Executa os testes unitários (Vitest)
 	npm run test
 
-test-e2e: ## Executa os testes de ponta a ponta (Playwright)
-	npx playwright test
+test-watch: ## Executa testes em modo watch
+	npm run test:watch
 
 check-traceability: ## Gera e verifica a matriz de rastreabilidade (SDD)
 	python3 scripts/generate_traceability.py
 
-check: lint test check-traceability ## Executa todos os Quality Gates
+check: lint test check-traceability ## Executa todos os Quality Gates locais
+
+docker-dev: ## Inicia o ambiente de desenvolvimento em container Docker
+	docker compose up
+
+docker-down: ## Para os containers Docker
+	docker compose down
+
+docker-build: ## Constrói a imagem Docker de produção com Nginx
+	docker build -t epmdevtech-planos:latest .
