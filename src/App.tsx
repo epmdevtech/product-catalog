@@ -7,6 +7,10 @@ import { HeroSection } from "@/sections/HeroSection";
 import { PrinciplesSection } from "@/sections/PrinciplesSection";
 import { SimulatorSection } from "@/sections/SimulatorSection";
 
+import { PlansSection } from "@/sections/PlansSection";
+import { RoiCalculatorSection } from "@/sections/RoiCalculatorSection";
+import { PaymentTermsSection } from "@/sections/PaymentTermsSection";
+
 export function App() {
   return (
     <HelmetProvider>
@@ -22,6 +26,9 @@ export function App() {
               <HeroSection />
               <PrinciplesSection />
               <SimulatorSection />
+              <PlansSection />
+              <RoiCalculatorSection />
+              <PaymentTermsSection />
             </main>
           </div>
         </NicheProvider>
