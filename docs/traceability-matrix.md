@@ -14,9 +14,11 @@ c9477f8` ci: configurar pipeline github actions com quality gates | [REVIEW-003-
 bf935e5` feat(niche): implementar arquitetura multinicho, motor de pricing e testes de guarda | [REVIEW-004-arquitetura-multinicho-pricing.md](../reviews/REVIEW-004-arquitetura-multinicho-pricing.md) (Not recorded) |
 | [SPEC-005](../specs/SPEC-005-layout-hero-principios-e-simulador.md) | Approved | [TASK-005-01](../tasks/TASK-005-01-layout-hero-principios-e-simulador.md) (Completed) | `
 323a727` feat(ui): implementar layout base, hero, principios e simulador interativo | [REVIEW-005-layout-hero-principios-simulador.md](../reviews/REVIEW-005-layout-hero-principios-simulador.md) (Not recorded) |
-| [SPEC-006](../specs/SPEC-006-planos-calculadora-retorno-e-pagamento.md) | Approved | [TASK-006-01](../tasks/TASK-006-01-cards-planos-calculadora-roi-pagamento.md) (Completed) | `86ed7383` feat(plans): implementar cards de planos, calculadora roi recharts e condicoes de pagamento | [REVIEW-006-planos-calculadora-roi-pagamento.md](../reviews/REVIEW-006-planos-calculadora-roi-pagamento.md) (Not recorded) |
-| [SPEC-007](../specs/SPEC-007-incluso-seguranca-faq-contrato-e-rodape.md) | Approved | [TASK-007-01](../tasks/TASK-007-01-secoes-incluso-seguranca-faq-contrato-rodape.md) (Completed) | — | [REVIEW-007-incluso-seguranca-faq-contrato-rodape.md](../reviews/REVIEW-007-incluso-seguranca-faq-contrato-rodape.md) (Not recorded) |
+| [SPEC-006](../specs/SPEC-006-planos-calculadora-retorno-e-pagamento.md) | Approved | [TASK-006-01](../tasks/TASK-006-01-cards-planos-calculadora-roi-pagamento.md) (Completed) | `
+86ed738` feat(plans): implementar cards de planos, calculadora roi recharts e condicoes de pagamento | [REVIEW-006-planos-calculadora-roi-pagamento.md](../reviews/REVIEW-006-planos-calculadora-roi-pagamento.md) (Not recorded) |
+| [SPEC-007](../specs/SPEC-007-incluso-seguranca-faq-contrato-e-rodape.md) | Approved | [TASK-007-01](../tasks/TASK-007-01-secoes-incluso-seguranca-faq-contrato-rodape.md) (Completed) | `2cf11508` feat(sections): adicionar secoes incluso vs extra, seguranca, faq, contrato e rodape cta | [REVIEW-007-incluso-seguranca-faq-contrato-rodape.md](../reviews/REVIEW-007-incluso-seguranca-faq-contrato-rodape.md) (Not recorded) |
+| [SPEC-008](../specs/SPEC-008-rotas-propostas-noindex-analitica-e-documentacao.md) | Approved | [TASK-008-01](../tasks/TASK-008-01-rotas-propostas-noindex-analytics-readme.md) (Completed) | — | [REVIEW-008-rotas-propostas-noindex-analytics-readme.md](../reviews/REVIEW-008-rotas-propostas-noindex-analytics-readme.md) (Not recorded) |
 
 ## Lacunas de rastreabilidade (Traceability gaps)
 
-- `TASK-007-01` não possui commit com `Task-Ref: TASK-007-01`.
+- `TASK-008-01` não possui commit com `Task-Ref: TASK-008-01`.
