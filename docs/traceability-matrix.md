@@ -18,8 +18,10 @@ bf935e5` feat(niche): implementar arquitetura multinicho, motor de pricing e tes
 86ed738` feat(plans): implementar cards de planos, calculadora roi recharts e condicoes de pagamento | [REVIEW-006-planos-calculadora-roi-pagamento.md](../reviews/REVIEW-006-planos-calculadora-roi-pagamento.md) (Not recorded) |
 | [SPEC-007](../specs/SPEC-007-incluso-seguranca-faq-contrato-e-rodape.md) | Approved | [TASK-007-01](../tasks/TASK-007-01-secoes-incluso-seguranca-faq-contrato-rodape.md) (Completed) | `
 2cf1150` feat(sections): adicionar secoes incluso vs extra, seguranca, faq, contrato e rodape cta | [REVIEW-007-incluso-seguranca-faq-contrato-rodape.md](../reviews/REVIEW-007-incluso-seguranca-faq-contrato-rodape.md) (Not recorded) |
-| [SPEC-008](../specs/SPEC-008-rotas-propostas-noindex-analitica-e-documentacao.md) | Approved | [TASK-008-01](../tasks/TASK-008-01-rotas-propostas-noindex-analytics-readme.md) (Completed) | `23540514` feat(routes): implementar roteamento, propostas nominais, noindex, analytics e readme | [REVIEW-008-rotas-propostas-noindex-analytics-readme.md](../reviews/REVIEW-008-rotas-propostas-noindex-analytics-readme.md) (Not recorded) |
+| [SPEC-008](../specs/SPEC-008-rotas-propostas-noindex-analitica-e-documentacao.md) | Approved | [TASK-008-01](../tasks/TASK-008-01-rotas-propostas-noindex-analytics-readme.md) (Completed) | `
+2354051` feat(routes): implementar roteamento, propostas nominais, noindex, analytics e readme | [REVIEW-008-rotas-propostas-noindex-analytics-readme.md](../reviews/REVIEW-008-rotas-propostas-noindex-analytics-readme.md) (Not recorded) |
+| [SPEC-009](../specs/SPEC-009-preco-unico-home-neutra-propostas-dinamicas.md) | Approved | [TASK-009-01](../tasks/TASK-009-01-refatoracao-preco-unico-home-neutra-propostas.md) (Completed) | — | [REVIEW-009-preco-unico-home-neutra-propostas-dinamicas.md](../reviews/REVIEW-009-preco-unico-home-neutra-propostas-dinamicas.md) (Not recorded) |
 
 ## Lacunas de rastreabilidade (Traceability gaps)
 
-- Nenhuma detectada nos artefatos verificados.
+- `TASK-009-01` não possui commit com `Task-Ref: TASK-009-01`.

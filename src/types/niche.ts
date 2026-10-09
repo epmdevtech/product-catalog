@@ -24,23 +24,6 @@ export const TermosNichoSchema = z.object({
   agendamento: TermoGramaticalSchema,
 });
 
-export const PriceTierSchema = z.object({
-  implantacao: z.number().positive(),
-  mensalidade: z.number().positive(),
-});
-
-export const PricingRulesSchema = z.object({
-  solo: PriceTierSchema,
-  pequena: PriceTierSchema,
-  media: PriceTierSchema,
-  multiunidade: PriceTierSchema,
-  essencial: PriceTierSchema,
-  profissionalAdicionalMensal: z.number().positive(),
-  unidadeAdicional: PriceTierSchema,
-  lembretesWhatsAppMensal: z.number().positive(),
-  horaTecnicaAdicional: z.number().positive(),
-});
-
 export const RetornoConfigSchema = z.object({
   ticketMedioPadrao: z.number().positive(),
   atendimentosRecuperadosPadrao: z.number().positive(),
@@ -83,7 +66,6 @@ export const NicheConfigSchema = z.object({
     titulo: z.string(),
     subtitulo: z.string(),
   }),
-  pricing: PricingRulesSchema,
   retorno: RetornoConfigSchema,
   seguranca: SegurancaConfigSchema,
   faq: z.array(FaqItemSchema),
@@ -95,8 +77,6 @@ export const NicheConfigSchema = z.object({
 export type TermoGramatical = z.infer<typeof TermoGramaticalSchema>;
 export type TermoSimples = z.infer<typeof TermoSimplesSchema>;
 export type TermosNicho = z.infer<typeof TermosNichoSchema>;
-export type PriceTier = z.infer<typeof PriceTierSchema>;
-export type PricingRules = z.infer<typeof PricingRulesSchema>;
 export type RetornoConfig = z.infer<typeof RetornoConfigSchema>;
 export type SegurancaConfig = z.infer<typeof SegurancaConfigSchema>;
 export type FaqItem = z.infer<typeof FaqItemSchema>;

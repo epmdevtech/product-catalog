@@ -59,13 +59,13 @@ export const NicheProvider: React.FC<NicheProviderProps> = ({
   const [planoSelecionado, setPlanoSelecionado] = useState<PlanoId>(initialPlano);
 
   const pricing = useMemo(() => {
-    return calculatePricing(niche, {
+    return calculatePricing({
       profissionais,
       unidades,
       incluirWhatsApp,
       planoSelecionado,
     });
-  }, [niche, profissionais, unidades, incluirWhatsApp, planoSelecionado]);
+  }, [profissionais, unidades, incluirWhatsApp, planoSelecionado]);
 
   const value = useMemo(
     () => ({

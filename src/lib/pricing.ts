@@ -1,4 +1,4 @@
-import type { NicheConfig } from "@/types/niche";
+import { pricingTable } from "@/data/pricing";
 
 export type PerfilEstrutura = "solo" | "pequena" | "media" | "multiunidade";
 export type PlanoId = "essencial" | "pro" | "multiunidade";
@@ -81,10 +81,9 @@ export function identifyProfile(profissionais: number, unidades: number): Perfil
 }
 
 /**
- * Calcula a precificação com base estrita na configuração do nicho
+ * Calcula a precificação com base estrita na tabela única da EPM DevTech
  */
 export function calculatePricing(
-  niche: NicheConfig,
   input: PricingSimulationInput
 ): PricingSimulationResult {
   const profissionais = Math.max(1, input.profissionais);
@@ -100,28 +99,28 @@ export function calculatePricing(
   let mensalidadeBase = 0;
 
   if (planoEfetivo === "essencial") {
-    implantacaoBase = niche.pricing.essencial.implantacao;
-    mensalidadeBase = niche.pricing.essencial.mensalidade;
+    implantacaoBase = pricingTable.essencial.implantacao;
+    mensalidadeBase = pricingTable.essencial.mensalidade;
   } else if (perfilIdentificado === "multiunidade") {
-    implantacaoBase = niche.pricing.multiunidade.implantacao;
-    mensalidadeBase = niche.pricing.multiunidade.mensalidade;
+    implantacaoBase = pricingTable.multiunidade.implantacao;
+    mensalidadeBase = pricingTable.multiunidade.mensalidade;
   } else if (perfilIdentificado === "media") {
-    implantacaoBase = niche.pricing.media.implantacao;
-    mensalidadeBase = niche.pricing.media.mensalidade;
+    implantacaoBase = pricingTable.media.implantacao;
+    mensalidadeBase = pricingTable.media.mensalidade;
   } else if (perfilIdentificado === "pequena") {
-    implantacaoBase = niche.pricing.pequena.implantacao;
-    mensalidadeBase = niche.pricing.pequena.mensalidade;
+    implantacaoBase = pricingTable.pequena.implantacao;
+    mensalidadeBase = pricingTable.pequena.mensalidade;
   } else {
-    implantacaoBase = niche.pricing.solo.implantacao;
-    mensalidadeBase = niche.pricing.solo.mensalidade;
+    implantacaoBase = pricingTable.solo.implantacao;
+    mensalidadeBase = pricingTable.solo.mensalidade;
   }
 
   // Unidades adicionais além de 2
   const unidadesAdicionaisQtd = Math.max(0, unidades - 2);
   const implantacaoAdicionalUnidades =
-    unidadesAdicionaisQtd * niche.pricing.unidadeAdicional.implantacao;
+    unidadesAdicionaisQtd * pricingTable.adicionalUnidadeImplantacao;
   const mensalidadeAdicionalUnidades =
-    unidadesAdicionaisQtd * niche.pricing.unidadeAdicional.mensalidade;
+    unidadesAdicionaisQtd * pricingTable.adicionalUnidadeMensal;
 
   // Profissionais adicionais
   let profissionaisAdicionaisQtd = 0;
@@ -136,10 +135,10 @@ export function calculatePricing(
   }
 
   const mensalidadeAdicionalProfissionais =
-    profissionaisAdicionaisQtd * niche.pricing.profissionalAdicionalMensal;
+    profissionaisAdicionaisQtd * pricingTable.adicionalProfissionalMensal;
 
   const mensalidadeWhatsApp = input.incluirWhatsApp
-    ? niche.pricing.lembretesWhatsAppMensal
+    ? pricingTable.lembretesWhatsAppMensal
     : 0;
 
   const implantacaoTotal = implantacaoBase + implantacaoAdicionalUnidades;

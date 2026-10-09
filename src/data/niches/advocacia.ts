@@ -53,17 +53,6 @@ export const advocacia: NicheConfig = {
     subtitulo:
       "Site institucional sóbrio e moderno com agendamento online integrado: seus clientes solicitam reuniões e consultas jurídicas com total discrição e agilidade.",
   },
-  pricing: {
-    solo: { implantacao: 3490, mensalidade: 169 },
-    pequena: { implantacao: 4990, mensalidade: 249 },
-    media: { implantacao: 6990, mensalidade: 329 },
-    multiunidade: { implantacao: 8990, mensalidade: 349 },
-    essencial: { implantacao: 3490, mensalidade: 149 },
-    profissionalAdicionalMensal: 29,
-    unidadeAdicional: { implantacao: 1500, mensalidade: 79 },
-    lembretesWhatsAppMensal: 119,
-    horaTecnicaAdicional: 180,
-  },
   retorno: {
     ticketMedioPadrao: 400,
     atendimentosRecuperadosPadrao: 2,

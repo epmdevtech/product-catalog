@@ -5,8 +5,9 @@ import { useNiche } from "@/contexts/NicheContext";
 import { Slider } from "@/components/ui/slider";
 import { Switch } from "@/components/ui/switch";
 import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import { pricingTable } from "@/data/pricing";
 
 export const SimulatorSection: React.FC = () => {
   const {
@@ -145,7 +146,7 @@ export const SimulatorSection: React.FC = () => {
               {profissionais > 10 && unidades === 1 && (
                 <p className="text-xs text-text-muted bg-surface p-2.5 rounded-md border border-border-subtle">
                   * Acima de 10 na mesma estrutura: acréscimo de R${" "}
-                  {niche.pricing.profissionalAdicionalMensal}/mês por profissional adicional.
+                  {pricingTable.adicionalProfissionalMensal}/mês por profissional adicional.
                 </p>
               )}
             </div>
@@ -209,8 +210,8 @@ export const SimulatorSection: React.FC = () => {
               {unidades > 2 && (
                 <p className="text-xs text-text-muted bg-surface p-2.5 rounded-md border border-border-subtle">
                   * Unidade adicional além de 2: + R${" "}
-                  {niche.pricing.unidadeAdicional.implantacao.toLocaleString("pt-BR")} (taxa única de configuração) e + R${" "}
-                  {niche.pricing.unidadeAdicional.mensalidade}/mês.
+                  {pricingTable.adicionalUnidadeImplantacao.toLocaleString("pt-BR")} (taxa única de configuração) e + R${" "}
+                  {pricingTable.adicionalUnidadeMensal}/mês.
                 </p>
               )}
             </div>
@@ -227,7 +228,7 @@ export const SimulatorSection: React.FC = () => {
                 </label>
                 <p className="text-xs text-text-muted leading-relaxed">
                   Disparos automáticos antes do horário marcado para reduzir faltas e esquecimentos (+ R${" "}
-                  {niche.pricing.lembretesWhatsAppMensal}/mês).
+                  {pricingTable.lembretesWhatsAppMensal}/mês).
                 </p>
               </div>
 

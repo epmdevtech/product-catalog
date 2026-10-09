@@ -4,6 +4,7 @@ import { useNiche } from "@/contexts/NicheContext";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
+import { pricingTable } from "@/data/pricing";
 import type { PlanoId } from "@/lib/pricing";
 
 export const PlansSection: React.FC = () => {
@@ -20,8 +21,8 @@ export const PlansSection: React.FC = () => {
       subtitulo: "Apenas Site Institucional",
       destaque: false,
       descricao: "Presença digital profissional e elegante, sem motor de agendamento online automatizado.",
-      implantacao: niche.pricing.essencial.implantacao,
-      mensalidade: niche.pricing.essencial.mensalidade,
+      implantacao: pricingTable.essencial.implantacao,
+      mensalidade: pricingTable.essencial.mensalidade,
       itensImplantacao: [
         "Site institucional exclusivo de alta velocidade",
         "Design adaptado para dispositivos móveis",
@@ -45,11 +46,11 @@ export const PlansSection: React.FC = () => {
       implantacao:
         planoSelecionado === "pro"
           ? pricing.implantacaoTotal
-          : niche.pricing.pequena.implantacao,
+          : pricingTable.pequena.implantacao,
       mensalidade:
         planoSelecionado === "pro"
           ? pricing.mensalidadeTotal
-          : niche.pricing.pequena.mensalidade,
+          : pricingTable.pequena.mensalidade,
       itensImplantacao: [
         "Tudo o que está incluso no Plano Essencial",
         "Sistema EPM Booking com agendamento online 24/7",
@@ -73,11 +74,11 @@ export const PlansSection: React.FC = () => {
       implantacao:
         planoSelecionado === "multiunidade"
           ? pricing.implantacaoTotal
-          : niche.pricing.multiunidade.implantacao,
+          : pricingTable.multiunidade.implantacao,
       mensalidade:
         planoSelecionado === "multiunidade"
           ? pricing.mensalidadeTotal
-          : niche.pricing.multiunidade.mensalidade,
+          : pricingTable.multiunidade.mensalidade,
       itensImplantacao: [
         "Tudo o que está incluso no Plano Pro",
         `Suporte a 2 ou mais ${niche.termos.unidade.plural} com seletor no agendamento`,

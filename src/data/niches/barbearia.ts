@@ -53,17 +53,6 @@ export const barbearia: NicheConfig = {
     subtitulo:
       "Site moderno com agendamento online integrado: seus clientes escolhem o barbeiro, o serviço e o horário pelo celular em poucos toques.",
   },
-  pricing: {
-    solo: { implantacao: 1990, mensalidade: 99 },
-    pequena: { implantacao: 2990, mensalidade: 149 },
-    media: { implantacao: 4490, mensalidade: 219 },
-    multiunidade: { implantacao: 6490, mensalidade: 299 },
-    essencial: { implantacao: 1490, mensalidade: 79 },
-    profissionalAdicionalMensal: 19,
-    unidadeAdicional: { implantacao: 1000, mensalidade: 49 },
-    lembretesWhatsAppMensal: 79,
-    horaTecnicaAdicional: 180,
-  },
   retorno: {
     ticketMedioPadrao: 50,
     atendimentosRecuperadosPadrao: 20,

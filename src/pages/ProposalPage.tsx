@@ -1,8 +1,8 @@
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { useParams, Navigate } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 import { track } from "@vercel/analytics";
-import { getProposalBySlug } from "@/data/proposals";
+import { loadProposal, type Proposal } from "@/data/proposals";
 import { getNicheBySlug } from "@/data/niches";
 import { NicheProvider } from "@/contexts/NicheContext";
 import { Header } from "@/components/layout/Header";
@@ -22,24 +22,27 @@ import { Footer } from "@/components/layout/Footer";
 
 export const ProposalPage: React.FC = () => {
   const { slug } = useParams<{ slug: string }>();
-
-  if (!slug) {
-    return <Navigate to="/" replace />;
-  }
-
-  const proposal = getProposalBySlug(slug);
-
-  if (!proposal) {
-    return <Navigate to="/" replace />;
-  }
-
-  const niche = getNicheBySlug(proposal.nichoSlug);
-
-  if (!niche) {
-    return <Navigate to="/" replace />;
-  }
+  // undefined: carregando | null: não encontrada/inválida | Proposal: encontrada
+  const [proposal, setProposal] = useState<Proposal | null | undefined>(undefined);
 
   useEffect(() => {
+    if (!slug) {
+      setProposal(null);
+      return;
+    }
+    let isMounted = true;
+    loadProposal(slug).then((data) => {
+      if (isMounted) {
+        setProposal(data);
+      }
+    });
+    return () => {
+      isMounted = false;
+    };
+  }, [slug]);
+
+  useEffect(() => {
+    if (!proposal) return;
     try {
       track("proposta_aberta", {
         slug: proposal.slug,
@@ -49,7 +52,27 @@ export const ProposalPage: React.FC = () => {
     } catch {
       // Ignora erro local de tracking
     }
-  }, [proposal.slug, proposal.nichoSlug, proposal.nomeNegocio]);
+  }, [proposal]);
+
+  // Enquanto carrega sob demanda
+  if (proposal === undefined) {
+    return (
+      <div className="min-h-screen bg-background flex items-center justify-center select-none">
+        <div className="h-6 w-6 rounded-full border-2 border-brand border-t-transparent animate-spin" />
+      </div>
+    );
+  }
+
+  // Slug inexistente redireciona para "/" silenciosamente sem mensagem de erro
+  if (!proposal) {
+    return <Navigate to="/" replace />;
+  }
+
+  const niche = getNicheBySlug(proposal.nichoSlug);
+
+  if (!niche) {
+    return <Navigate to="/" replace />;
+  }
 
   return (
     <>

@@ -1,0 +1,18 @@
+{
+  "slug": "imperio-barber-m4b9q1rt",
+  "nichoSlug": "barbearia",
+  "nomeNegocio": "Império Barber Club & Spa",
+  "responsavel": "Carlos Eduardo Santos",
+  "profissionais": 8,
+  "unidades": 2,
+  "plano": "multiunidade",
+  "incluirWhatsApp": true,
+  "validadeAte": "20/12/2026",
+  "observacoes": "Arquitetura com seletor de 2 filiais físicas e equipe distribuída.",
+  "condicaoAVistaEspecial": {
+    "tipo": "percentual",
+    "valor": 12,
+    "descricao": "12% de desconto à vista na contratação da rede"
+  },
+  "criadoEm": "08/10/2026"
+}

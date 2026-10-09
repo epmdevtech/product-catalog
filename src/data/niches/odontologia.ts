@@ -53,17 +53,6 @@ export const odontologia: NicheConfig = {
     subtitulo:
       "Site institucional de alto padrão com agenda online integrada: seus pacientes marcam consultas em poucos toques, sem conflito de horários.",
   },
-  pricing: {
-    solo: { implantacao: 3490, mensalidade: 169 },
-    pequena: { implantacao: 4990, mensalidade: 249 },
-    media: { implantacao: 6990, mensalidade: 329 },
-    multiunidade: { implantacao: 8990, mensalidade: 349 },
-    essencial: { implantacao: 3490, mensalidade: 149 },
-    profissionalAdicionalMensal: 29,
-    unidadeAdicional: { implantacao: 1500, mensalidade: 79 },
-    lembretesWhatsAppMensal: 119,
-    horaTecnicaAdicional: 180,
-  },
   retorno: {
     ticketMedioPadrao: 250,
     atendimentosRecuperadosPadrao: 3,

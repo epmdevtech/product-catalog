@@ -1,0 +1,18 @@
+{
+  "slug": "sorriso-prime-k7x2m9qf",
+  "nichoSlug": "odontologia",
+  "nomeNegocio": "Clínica Odontológica Sorriso Prime",
+  "responsavel": "Dra. Renata Vasconcelos",
+  "profissionais": 3,
+  "unidades": 1,
+  "plano": "pro",
+  "incluirWhatsApp": true,
+  "validadeAte": "30/11/2026",
+  "observacoes": "Proposta desenvolvida após demonstração online da plataforma EPM Booking.",
+  "condicaoAVistaEspecial": {
+    "tipo": "percentual",
+    "valor": 10,
+    "descricao": "10% de desconto à vista na taxa de implantação"
+  },
+  "criadoEm": "01/10/2026"
+}

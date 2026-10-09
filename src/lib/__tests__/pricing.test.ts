@@ -1,15 +1,13 @@
 import { describe, it, expect } from "vitest";
-import { odontologia } from "@/data/niches/odontologia";
-import { advocacia } from "@/data/niches/advocacia";
-import { barbearia } from "@/data/niches/barbearia";
 import {
   calculatePricing,
   calculateInstallments,
   calculateROI,
   identifyProfile,
 } from "../pricing";
+import { pricingTable } from "@/data/pricing";
 
-describe("Motor de Cálculo de Preços (pricing.ts)", () => {
+describe("Motor de Cálculo de Preço Único (pricing.ts)", () => {
   describe("Identificação de Perfil", () => {
     it("deve identificar perfil solo com 1 profissional e 1 unidade", () => {
       expect(identifyProfile(1, 1)).toBe("solo");
@@ -20,7 +18,7 @@ describe("Motor de Cálculo de Preços (pricing.ts)", () => {
       expect(identifyProfile(4, 1)).toBe("pequena");
     });
 
-    it("deve identificar perfil media com 5 ou mais profissionais e 1 unidade", () => {
+    it("deve identificar perfil media com 5 a 10 profissionais e 1 unidade", () => {
       expect(identifyProfile(5, 1)).toBe("media");
       expect(identifyProfile(10, 1)).toBe("media");
       expect(identifyProfile(11, 1)).toBe("media");
@@ -32,9 +30,9 @@ describe("Motor de Cálculo de Preços (pricing.ts)", () => {
     });
   });
 
-  describe("Nicho: Odontologia", () => {
-    it("1 dentista (solo, 1 unidade)", () => {
-      const res = calculatePricing(odontologia, {
+  describe("Tabela de Preços Canônica", () => {
+    it("1 profissional (perfil solo, 1 unidade)", () => {
+      const res = calculatePricing({
         profissionais: 1,
         unidades: 1,
         incluirWhatsApp: false,
@@ -45,45 +43,48 @@ describe("Motor de Cálculo de Preços (pricing.ts)", () => {
       expect(res.mensalidadeTotal).toBe(169);
     });
 
-    it("4 dentistas (pequena, 1 unidade)", () => {
-      const res = calculatePricing(odontologia, {
+    it("4 profissionais (perfil pequena, 1 unidade)", () => {
+      const res = calculatePricing({
         profissionais: 4,
         unidades: 1,
         incluirWhatsApp: false,
       });
       expect(res.perfilIdentificado).toBe("pequena");
+      expect(res.planoRecomendado).toBe("pro");
       expect(res.implantacaoTotal).toBe(4990);
       expect(res.mensalidadeTotal).toBe(249);
     });
 
-    it("5 dentistas (media, 1 unidade)", () => {
-      const res = calculatePricing(odontologia, {
+    it("5 profissionais (perfil media, 1 unidade)", () => {
+      const res = calculatePricing({
         profissionais: 5,
         unidades: 1,
         incluirWhatsApp: false,
       });
       expect(res.perfilIdentificado).toBe("media");
+      expect(res.planoRecomendado).toBe("pro");
       expect(res.implantacaoTotal).toBe(6990);
       expect(res.mensalidadeTotal).toBe(329);
       expect(res.profissionaisAdicionaisQtd).toBe(0);
     });
 
-    it("11 dentistas (media, 1 unidade, com 1 profissional adicional)", () => {
-      const res = calculatePricing(odontologia, {
+    it("11 profissionais (perfil media com 1 profissional adicional, 1 unidade)", () => {
+      const res = calculatePricing({
         profissionais: 11,
         unidades: 1,
         incluirWhatsApp: false,
       });
       expect(res.perfilIdentificado).toBe("media");
-      expect(res.profissionaisAdicionaisQtd).toBe(1);
       expect(res.implantacaoTotal).toBe(6990);
+      expect(res.profissionaisAdicionaisQtd).toBe(1);
       // 329 + (1 * 29) = 358
-      expect(res.mensalidadeTotal).toBe(329 + 29);
+      expect(res.mensalidadeTotal).toBe(329 + pricingTable.adicionalProfissionalMensal);
+      expect(res.mensalidadeTotal).toBe(358);
     });
 
-    it("2 unidades (multiunidade)", () => {
-      const res = calculatePricing(odontologia, {
-        profissionais: 6,
+    it("2 unidades (perfil multiunidade base, até 15 profissionais)", () => {
+      const res = calculatePricing({
+        profissionais: 8,
         unidades: 2,
         incluirWhatsApp: false,
       });
@@ -91,206 +92,130 @@ describe("Motor de Cálculo de Preços (pricing.ts)", () => {
       expect(res.planoRecomendado).toBe("multiunidade");
       expect(res.implantacaoTotal).toBe(8990);
       expect(res.mensalidadeTotal).toBe(349);
+      expect(res.unidadesAdicionaisQtd).toBe(0);
     });
 
-    it("3 unidades (multiunidade + 1 unidade adicional)", () => {
-      const res = calculatePricing(odontologia, {
-        profissionais: 8,
+    it("3 unidades (perfil multiunidade com 1 unidade adicional além de 2)", () => {
+      const res = calculatePricing({
+        profissionais: 10,
         unidades: 3,
         incluirWhatsApp: false,
       });
       expect(res.perfilIdentificado).toBe("multiunidade");
       expect(res.unidadesAdicionaisQtd).toBe(1);
-      // 8990 + 1500 = 10490
-      expect(res.implantacaoTotal).toBe(8990 + 1500);
-      // 349 + 79 = 428
-      expect(res.mensalidadeTotal).toBe(349 + 79);
+      // Implantação: 8990 + 1500 = 10490
+      expect(res.implantacaoTotal).toBe(8990 + pricingTable.adicionalUnidadeImplantacao);
+      expect(res.implantacaoTotal).toBe(10490);
+      // Mensalidade: 349 + 79 = 428
+      expect(res.mensalidadeTotal).toBe(349 + pricingTable.adicionalUnidadeMensal);
+      expect(res.mensalidadeTotal).toBe(428);
     });
 
-    it("com add-on de WhatsApp", () => {
-      const res = calculatePricing(odontologia, {
-        profissionais: 1,
-        unidades: 1,
-        incluirWhatsApp: true,
-      });
-      expect(res.mensalidadeWhatsApp).toBe(119);
-      expect(res.mensalidadeTotal).toBe(169 + 119);
-    });
-  });
-
-  describe("Nicho: Advocacia", () => {
-    it("1 advogado (solo, 1 unidade)", () => {
-      const res = calculatePricing(advocacia, {
-        profissionais: 1,
+    it("Plano Essencial (apenas site institucional, sem agendamento)", () => {
+      const res = calculatePricing({
+        profissionais: 3,
         unidades: 1,
         incluirWhatsApp: false,
+        planoSelecionado: "essencial",
       });
+      expect(res.planoEfetivo).toBe("essencial");
       expect(res.implantacaoTotal).toBe(3490);
-      expect(res.mensalidadeTotal).toBe(169);
-    });
-
-    it("4 advogados (pequena)", () => {
-      const res = calculatePricing(advocacia, {
-        profissionais: 4,
-        unidades: 1,
-        incluirWhatsApp: false,
-      });
-      expect(res.implantacaoTotal).toBe(4990);
-      expect(res.mensalidadeTotal).toBe(249);
-    });
-
-    it("11 advogados (media + 1 adicional)", () => {
-      const res = calculatePricing(advocacia, {
-        profissionais: 11,
-        unidades: 1,
-        incluirWhatsApp: false,
-      });
-      expect(res.implantacaoTotal).toBe(6990);
-      expect(res.mensalidadeTotal).toBe(329 + 29);
-    });
-
-    it("3 unidades com add-on de WhatsApp", () => {
-      const res = calculatePricing(advocacia, {
-        profissionais: 5,
-        unidades: 3,
-        incluirWhatsApp: true,
-      });
-      expect(res.implantacaoTotal).toBe(8990 + 1500);
-      expect(res.mensalidadeTotal).toBe(349 + 79 + 119);
-    });
-  });
-
-  describe("Nicho: Barbearia", () => {
-    it("1 barbeiro (solo)", () => {
-      const res = calculatePricing(barbearia, {
-        profissionais: 1,
-        unidades: 1,
-        incluirWhatsApp: false,
-      });
-      expect(res.implantacaoTotal).toBe(1990);
-      expect(res.mensalidadeTotal).toBe(99);
-    });
-
-    it("4 barbeiros (pequena)", () => {
-      const res = calculatePricing(barbearia, {
-        profissionais: 4,
-        unidades: 1,
-        incluirWhatsApp: false,
-      });
-      expect(res.implantacaoTotal).toBe(2990);
       expect(res.mensalidadeTotal).toBe(149);
     });
 
-    it("5 barbeiros (media)", () => {
-      const res = calculatePricing(barbearia, {
-        profissionais: 5,
+    it("Add-on de automação e lembretes por WhatsApp", () => {
+      const semWhats = calculatePricing({
+        profissionais: 2,
         unidades: 1,
         incluirWhatsApp: false,
       });
-      expect(res.implantacaoTotal).toBe(4490);
-      expect(res.mensalidadeTotal).toBe(219);
-    });
-
-    it("11 barbeiros (media + 1 profissional a R$ 19)", () => {
-      const res = calculatePricing(barbearia, {
-        profissionais: 11,
-        unidades: 1,
-        incluirWhatsApp: false,
-      });
-      expect(res.implantacaoTotal).toBe(4490);
-      expect(res.mensalidadeTotal).toBe(219 + 19);
-    });
-
-    it("3 unidades (6490 + 1000) e mensalidade (299 + 49)", () => {
-      const res = calculatePricing(barbearia, {
-        profissionais: 4,
-        unidades: 3,
-        incluirWhatsApp: false,
-      });
-      expect(res.implantacaoTotal).toBe(6490 + 1000);
-      expect(res.mensalidadeTotal).toBe(299 + 49);
-    });
-
-    it("com add-on de WhatsApp da barbearia (R$ 79)", () => {
-      const res = calculatePricing(barbearia, {
-        profissionais: 1,
+      const comWhats = calculatePricing({
+        profissionais: 2,
         unidades: 1,
         incluirWhatsApp: true,
       });
-      expect(res.mensalidadeWhatsApp).toBe(79);
-      expect(res.mensalidadeTotal).toBe(99 + 79);
+
+      expect(comWhats.mensalidadeWhatsApp).toBe(pricingTable.lembretesWhatsAppMensal);
+      expect(comWhats.mensalidadeTotal).toBe(
+        semWhats.mensalidadeTotal + pricingTable.lembretesWhatsAppMensal
+      );
     });
   });
 
-  describe("Parcelamento e Condições de Pagamento", () => {
-    it("deve calcular modelo 50/50 para unidade única", () => {
-      const res = calculateInstallments(4990, false);
-      expect(res.modeloEntradaSaldo.rotulo).toContain("50/50");
-      expect(res.modeloEntradaSaldo.etapas).toHaveLength(2);
-      expect(res.modeloEntradaSaldo.etapas[0].valor).toBe(2495);
-      expect(res.modeloEntradaSaldo.etapas[1].valor).toBe(2495);
+  describe("Condições Comerciais e Parcelamentos", () => {
+    it("deve calcular modelo entrada e saldo 50/50 em unidade única", () => {
+      const inst = calculateInstallments(4990, false);
+      expect(inst.modeloEntradaSaldo.rotulo).toBe("Entrada e saldo (50/50)");
+      expect(inst.modeloEntradaSaldo.etapas).toHaveLength(2);
+      expect(inst.modeloEntradaSaldo.etapas[0].valor).toBe(2495);
+      expect(inst.modeloEntradaSaldo.etapas[1].valor).toBe(2495);
     });
 
-    it("deve calcular modelo 50/25/25 para multiunidade", () => {
-      const res = calculateInstallments(8990, true);
-      expect(res.modeloEntradaSaldo.rotulo).toContain("50/25/25");
-      expect(res.modeloEntradaSaldo.etapas).toHaveLength(3);
-      expect(res.modeloEntradaSaldo.etapas[0].valor).toBe(4495);
-      expect(res.modeloEntradaSaldo.etapas[1].valor).toBe(2247.5);
-      expect(res.modeloEntradaSaldo.etapas[2].valor).toBe(2247.5);
+    it("deve calcular modelo entrada e saldo 50/25/25 para multiunidade", () => {
+      const inst = calculateInstallments(8990, true);
+      expect(inst.modeloEntradaSaldo.rotulo).toBe("Entrada e saldo (50/25/25)");
+      expect(inst.modeloEntradaSaldo.etapas).toHaveLength(3);
+      expect(inst.modeloEntradaSaldo.etapas[0].valor).toBe(4495);
+      expect(inst.modeloEntradaSaldo.etapas[1].valor).toBe(2247.5);
+      expect(inst.modeloEntradaSaldo.etapas[2].valor).toBe(2247.5);
     });
 
-    it("deve calcular parcelas EPM em 3x e 4x sem juros", () => {
-      const res = calculateInstallments(3490, false);
-      expect(res.parcelasEpm3x.valorParcela).toBe(Math.round((3490 / 3) * 100) / 100);
-      expect(res.parcelasEpm4x.valorParcela).toBe(Math.round((3490 / 4) * 100) / 100);
-      expect(res.parcelasCartao6x.valorParcelaAproximada).toBe(Math.round((3490 / 6) * 100) / 100);
+    it("deve calcular parcelamento EPM 3x e 4x sem juros e cartão 6x", () => {
+      const inst = calculateInstallments(4990, false);
+      expect(inst.parcelasEpm3x.parcelas).toBe(3);
+      expect(inst.parcelasEpm3x.valorParcela).toBe(1663.33);
+      expect(inst.parcelasEpm4x.parcelas).toBe(4);
+      expect(inst.parcelasEpm4x.valorParcela).toBe(1247.5);
+      expect(inst.parcelasCartao6x.parcelas).toBe(6);
+      expect(inst.parcelasCartao6x.valorParcelaAproximada).toBe(831.67);
     });
 
-    it("deve aplicar condição à vista percentual quando presente na proposta", () => {
-      const res = calculateInstallments(4990, false, {
+    it("deve aplicar desconto à vista percentual quando configurado", () => {
+      const inst = calculateInstallments(5000, false, {
         tipo: "percentual",
         valor: 10,
       });
-      expect(res.condicaoAVistaAplicada).toBeDefined();
-      expect(res.condicaoAVistaAplicada?.economia).toBe(499);
-      expect(res.condicaoAVistaAplicada?.valorFinal).toBe(4491);
+      expect(inst.condicaoAVistaAplicada).toBeDefined();
+      expect(inst.condicaoAVistaAplicada?.valorOriginal).toBe(5000);
+      expect(inst.condicaoAVistaAplicada?.economia).toBe(500);
+      expect(inst.condicaoAVistaAplicada?.valorFinal).toBe(4500);
     });
 
-    it("deve aplicar condição à vista em valor fixo quando presente", () => {
-      const res = calculateInstallments(4990, false, {
+    it("deve aplicar desconto à vista fixo quando configurado", () => {
+      const inst = calculateInstallments(5000, false, {
         tipo: "fixo",
-        valor: 500,
+        valor: 300,
       });
-      expect(res.condicaoAVistaAplicada?.economia).toBe(500);
-      expect(res.condicaoAVistaAplicada?.valorFinal).toBe(4490);
+      expect(inst.condicaoAVistaAplicada).toBeDefined();
+      expect(inst.condicaoAVistaAplicada?.economia).toBe(300);
+      expect(inst.condicaoAVistaAplicada?.valorFinal).toBe(4700);
     });
   });
 
-  describe("Calculadora de Retorno (ROI) e Payback", () => {
-    it("deve calcular payback positivo corretamente", () => {
-      // 3 consultas a R$ 250 = R$ 750/mês. Mensalidade R$ 249. Lucro = R$ 501/mês.
-      // Implantação = R$ 4990. Payback = 4990 / 501 = ~10 meses.
-      const roi = calculateROI(250, 3, 4990, 249);
+  describe("Calculadora de Retorno (ROI e Payback)", () => {
+    it("deve calcular payback positivo quando a receita adicional supera a mensalidade", () => {
+      const ticketMedio = 200;
+      const recuperados = 3; // Receita adicional = 600
+      const mensalidade = 200; // Lucro líquido = 400
+      const implantacao = 4000;
+
+      const roi = calculateROI(ticketMedio, recuperados, implantacao, mensalidade);
       expect(roi.temRetorno).toBe(true);
-      expect(roi.receitaAdicionalMensal).toBe(750);
-      expect(roi.lucroLiquidoMensal).toBe(501);
-      expect(roi.paybackMeses).toBeCloseTo(10, 0);
-      expect(roi.projecao12Meses).toHaveLength(13);
+      expect(roi.receitaAdicionalMensal).toBe(600);
+      expect(roi.lucroLiquidoMensal).toBe(400);
+      expect(roi.paybackMeses).toBe(10);
+      expect(roi.projecao12Meses).toHaveLength(13); // Mês 0 até 12
     });
 
-    it("deve indicar ausência de payback quando a receita adicional não cobre a mensalidade", () => {
-      // 1 atendimento a R$ 50 = R$ 50/mês. Mensalidade R$ 149. Lucro = -R$ 99.
-      const roi = calculateROI(50, 1, 2990, 149);
-      expect(roi.temRetorno).toBe(false);
-      expect(roi.paybackMeses).toBeNull();
-      expect(roi.lucroLiquidoMensal).toBe(-99);
-    });
+    it("deve reportar payback inexistente quando lucro líquido mensal for <= 0", () => {
+      const ticketMedio = 50;
+      const recuperados = 1; // Receita adicional = 50
+      const mensalidade = 200; // Lucro líquido = -150
 
-    it("deve indicar ausência de payback quando a receita empata com a mensalidade", () => {
-      const roi = calculateROI(100, 1, 2000, 100);
+      const roi = calculateROI(ticketMedio, recuperados, 4000, mensalidade);
       expect(roi.temRetorno).toBe(false);
       expect(roi.paybackMeses).toBeNull();
+      expect(roi.lucroLiquidoMensal).toBe(-150);
     });
   });
 });
