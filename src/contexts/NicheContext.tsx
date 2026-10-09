@@ -7,6 +7,7 @@ import {
 } from "@/lib/pricing";
 
 export interface ProposalInfo {
+  slug?: string;
   nomeNegocio?: string;
   responsavel?: string;
   validadeAte?: string;

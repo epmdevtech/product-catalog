@@ -10,6 +10,12 @@ import { SimulatorSection } from "@/sections/SimulatorSection";
 import { PlansSection } from "@/sections/PlansSection";
 import { RoiCalculatorSection } from "@/sections/RoiCalculatorSection";
 import { PaymentTermsSection } from "@/sections/PaymentTermsSection";
+import { IncludedVsExtraSection } from "@/sections/IncludedVsExtraSection";
+import { SecuritySection } from "@/sections/SecuritySection";
+import { FaqSection } from "@/sections/FaqSection";
+import { ContractTermsSection } from "@/sections/ContractTermsSection";
+import { FinalCtaSection } from "@/sections/FinalCtaSection";
+import { Footer } from "@/components/layout/Footer";
 
 export function App() {
   return (
@@ -29,7 +35,13 @@ export function App() {
               <PlansSection />
               <RoiCalculatorSection />
               <PaymentTermsSection />
+              <IncludedVsExtraSection />
+              <SecuritySection />
+              <FaqSection />
+              <ContractTermsSection />
+              <FinalCtaSection />
             </main>
+            <Footer />
           </div>
         </NicheProvider>
       </ThemeProvider>
