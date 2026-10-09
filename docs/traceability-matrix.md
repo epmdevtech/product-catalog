@@ -8,9 +8,11 @@ Gerado por `scripts/generate_traceability.py`. Não edite manualmente; execute n
 048851f` feat(core): implantar esqueleto da aplicacao e tokens epm devtech | [REVIEW-001-esqueleto-da-aplicacao.md](../reviews/REVIEW-001-esqueleto-da-aplicacao.md) (Not recorded) |
 | [SPEC-002](../specs/SPEC-002-infraestrutura-docker-e-docker-compose.md) | Approved | [TASK-002-01](../tasks/TASK-002-01-dockerfile-e-docker-compose.md) (Completed) | `
 699e567` feat(infra): configurar dockerfile e docker-compose com nginx | [REVIEW-002-infraestrutura-docker.md](../reviews/REVIEW-002-infraestrutura-docker.md) (Not recorded) |
-| [SPEC-003](../specs/SPEC-003-esteira-ci-cd-github-actions.md) | Approved | [TASK-003-01](../tasks/TASK-003-01-github-actions-pipeline-quality-gates.md) (Completed) | `c9477f80` ci: configurar pipeline github actions com quality gates | [REVIEW-003-esteira-ci-cd.md](../reviews/REVIEW-003-esteira-ci-cd.md) (Not recorded) |
-| [SPEC-004](../specs/SPEC-004-arquitetura-multinicho-pricing-e-testes.md) | Approved | [TASK-004-01](../tasks/TASK-004-01-tipos-niche-config-configs-iniciais.md) (Completed) | — | [REVIEW-004-arquitetura-multinicho-pricing.md](../reviews/REVIEW-004-arquitetura-multinicho-pricing.md) (Not recorded) |
+| [SPEC-003](../specs/SPEC-003-esteira-ci-cd-github-actions.md) | Approved | [TASK-003-01](../tasks/TASK-003-01-github-actions-pipeline-quality-gates.md) (Completed) | `
+c9477f8` ci: configurar pipeline github actions com quality gates | [REVIEW-003-esteira-ci-cd.md](../reviews/REVIEW-003-esteira-ci-cd.md) (Not recorded) |
+| [SPEC-004](../specs/SPEC-004-arquitetura-multinicho-pricing-e-testes.md) | Approved | [TASK-004-01](../tasks/TASK-004-01-tipos-niche-config-configs-iniciais.md) (Completed) | `bf935e56` feat(niche): implementar arquitetura multinicho, motor de pricing e testes de guarda | [REVIEW-004-arquitetura-multinicho-pricing.md](../reviews/REVIEW-004-arquitetura-multinicho-pricing.md) (Not recorded) |
+| [SPEC-005](../specs/SPEC-005-layout-hero-principios-e-simulador.md) | Approved | [TASK-005-01](../tasks/TASK-005-01-layout-hero-principios-e-simulador.md) (Completed) | — | [REVIEW-005-layout-hero-principios-simulador.md](../reviews/REVIEW-005-layout-hero-principios-simulador.md) (Not recorded) |
 
 ## Lacunas de rastreabilidade (Traceability gaps)
 
-- `TASK-004-01` não possui commit com `Task-Ref: TASK-004-01`.
+- `TASK-005-01` não possui commit com `Task-Ref: TASK-005-01`.

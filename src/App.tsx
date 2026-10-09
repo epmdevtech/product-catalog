@@ -1,5 +1,11 @@
 import { ThemeProvider } from "next-themes";
 import { HelmetProvider, Helmet } from "react-helmet-async";
+import { odontologia } from "@/data/niches/odontologia";
+import { NicheProvider } from "@/contexts/NicheContext";
+import { Header } from "@/components/layout/Header";
+import { HeroSection } from "@/sections/HeroSection";
+import { PrinciplesSection } from "@/sections/PrinciplesSection";
+import { SimulatorSection } from "@/sections/SimulatorSection";
 
 export function App() {
   return (
@@ -9,26 +15,16 @@ export function App() {
           <title>Proposta | EPM DevTech</title>
           <meta name="robots" content="noindex, nofollow" />
         </Helmet>
-        <div className="min-h-screen bg-background text-foreground flex flex-col items-center justify-center p-6">
-          <div className="max-w-md w-full text-center space-y-4">
-            <img
-              src="/logo-epm-devtech-light-sm.webp"
-              alt="EPM DEVTECH"
-              className="h-10 mx-auto object-contain block dark:hidden"
-            />
-            <img
-              src="/logo-emp-dev-tech-sm.webp"
-              alt="EPM DEVTECH"
-              className="h-10 mx-auto object-contain hidden dark:block"
-            />
-            <h1 className="text-2xl font-bold tracking-tight text-foreground">
-              Plataforma de Propostas e Planos
-            </h1>
-            <p className="text-sm text-muted-foreground">
-              EPM DevTech — Engenharia de Software e Soluções Digitais
-            </p>
+        <NicheProvider niche={odontologia}>
+          <div className="min-h-screen bg-background text-foreground flex flex-col">
+            <Header />
+            <main className="flex-1">
+              <HeroSection />
+              <PrinciplesSection />
+              <SimulatorSection />
+            </main>
           </div>
-        </div>
+        </NicheProvider>
       </ThemeProvider>
     </HelmetProvider>
   );
