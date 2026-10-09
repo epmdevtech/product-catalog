@@ -143,7 +143,8 @@ async function main() {
     console.log("=======================================================");
     console.log(`- Slug:     ${slug}`);
     console.log(`- Arquivo:  ${path.relative(process.cwd(), filePath)}`);
-    console.log(`- URL Prod: https://planos.epmdevtech.com.br/proposta/${slug}`);
+    console.log(`- URL Prod: https://catalogo.epmdevtech.com.br/proposta/${slug}`);
+    console.log(`            https://planos.epmdevtech.com.br/proposta/${slug}`);
     console.log(`- URL Dev:  http://localhost:5173/proposta/${slug}`);
     console.log("=======================================================\n");
   } finally {

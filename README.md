@@ -1,6 +1,6 @@
 # EPM DevTech — Plataforma Multinicho de Planos & Propostas
 
-> **Ambiente:** `planos.epmdevtech.com.br`  
+> **Ambiente:** `catalogo.epmdevtech.com.br` / `planos.epmdevtech.com.br`  
 > **Status:** Produção / Alta Conversão B2B  
 > **Governança:** Universal SDD (Spec-Driven Development)  
 > **Tecnologia:** Vite 5 • React 18 • TypeScript • Tailwind 3.4 • Radix UI • Framer Motion • Recharts
@@ -156,7 +156,7 @@ npm run preview
 
 1. Framework Preset: **Vite**.
 2. Build Command: `npm run build`. Output Directory: `dist`.
-3. Domínio de Produção: `planos.epmdevtech.com.br` (CNAME para `cname.vercel-dns.com`).
+3. Domínios de Produção: `catalogo.epmdevtech.com.br` e `planos.epmdevtech.com.br` (CNAME para `cname.vercel-dns.com`).
 4. Configurações automáticas via `vercel.json`:
    - Headers HTTP: `X-Robots-Tag: noindex, nofollow, noarchive, nosnippet`.
    - Rewrites SPA: `/:path*` redirecionado para `/index.html`.
