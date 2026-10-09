@@ -4,9 +4,11 @@ Gerado por `scripts/generate_traceability.py`. Não edite manualmente; execute n
 
 | SPEC | Status | Tarefas (Tasks) | Commits | QA/revisão |
 |---|---|---|---|---|
-| [SPEC-001](../specs/SPEC-001-esqueleto-da-aplicacao-e-tokens-epmdevtech.md) | Approved | [TASK-001-01](../tasks/TASK-001-01-esqueleto-vite-react-tailwind.md) (Completed) | `048851f7` feat(core): implantar esqueleto da aplicacao e tokens epm devtech | [REVIEW-001-esqueleto-da-aplicacao.md](../reviews/REVIEW-001-esqueleto-da-aplicacao.md) (Not recorded) |
-| [SPEC-002](../specs/SPEC-002-infraestrutura-docker-e-docker-compose.md) | Approved | [TASK-002-01](../tasks/TASK-002-01-dockerfile-e-docker-compose.md) (Completed) | — | [REVIEW-002-infraestrutura-docker.md](../reviews/REVIEW-002-infraestrutura-docker.md) (Not recorded) |
+| [SPEC-001](../specs/SPEC-001-esqueleto-da-aplicacao-e-tokens-epmdevtech.md) | Approved | [TASK-001-01](../tasks/TASK-001-01-esqueleto-vite-react-tailwind.md) (Completed) | `
+048851f` feat(core): implantar esqueleto da aplicacao e tokens epm devtech | [REVIEW-001-esqueleto-da-aplicacao.md](../reviews/REVIEW-001-esqueleto-da-aplicacao.md) (Not recorded) |
+| [SPEC-002](../specs/SPEC-002-infraestrutura-docker-e-docker-compose.md) | Approved | [TASK-002-01](../tasks/TASK-002-01-dockerfile-e-docker-compose.md) (Completed) | `699e567f` feat(infra): configurar dockerfile e docker-compose com nginx | [REVIEW-002-infraestrutura-docker.md](../reviews/REVIEW-002-infraestrutura-docker.md) (Not recorded) |
+| [SPEC-003](../specs/SPEC-003-esteira-ci-cd-github-actions.md) | Approved | [TASK-003-01](../tasks/TASK-003-01-github-actions-pipeline-quality-gates.md) (Completed) | — | [REVIEW-003-esteira-ci-cd.md](../reviews/REVIEW-003-esteira-ci-cd.md) (Not recorded) |
 
 ## Lacunas de rastreabilidade (Traceability gaps)
 
-- `TASK-002-01` não possui commit com `Task-Ref: TASK-002-01`.
+- `TASK-003-01` não possui commit com `Task-Ref: TASK-003-01`.
