@@ -1,0 +1,556 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+  /* Navegação suave para links âncora (SEO + usabilidade) */
+  scroll-behavior: smooth;
+  /* Compensa a altura do header fixo ao navegar para âncoras */
+  scroll-padding-top: 80px;
+  /* Previne layout shift mantendo a calha de rolagem sempre reservada */
+  scrollbar-gutter: stable;
+}
+
+body {
+  /* overflow-x: clip bloqueia o overflow horizontal visualmente
+     sem criar novo scroll container — preserva a navegação por âncoras.
+     overflow-x: hidden quebraria href="#secao" em mobile. */
+  overflow-x: clip;
+  max-width: 100%;
+}
+
+/* Previne que bibliotecas como Radix/react-remove-scroll ocultem a barra de rolagem e desloquem elementos fixos.
+   Especificidade: html body[attr] = (0,1,2) > body[attr] = (0,1,1) da biblioteca.
+   Como a react-remove-scroll-bar injeta estilos via styleSingleton APÓS o CSS estático,
+   o aumento de especificidade garante que nossa regra sempre vença, independentemente da ordem. */
+html body[data-scroll-locked] {
+  overflow: visible !important;
+  margin-right: 0px !important;
+  padding-right: 0px !important;
+}
+
+html body[data-scroll-locked] header.fixed {
+  right: 0px !important;
+  margin-right: 0px !important;
+}
+
+/* Oculta o cursor nativo em dispositivos com mouse (pointer: fine)
+   apenas quando o CursorOrb customizado estiver montado e ativo */
+@media (pointer: fine) {
+  html.custom-cursor-active,
+  html.custom-cursor-active * {
+    cursor: none !important;
+  }
+}
+
+/* Normalização de autofill do navegador:
+   Previne que o Chrome/WebKit aplique fundo retangular cinza/azulado em inputs e textareas transparentes */
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active,
+textarea:-webkit-autofill,
+textarea:-webkit-autofill:hover,
+textarea:-webkit-autofill:focus,
+textarea:-webkit-autofill:active {
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: inherit !important;
+  transition: background-color 5000000s ease-in-out 0s;
+  box-shadow: inset 0 0 20px 20px transparent !important;
+}
+
+
+/* Skip-to-content: visível apenas ao navegar por teclado (acessibilidade/SEO) */
+.skip-to-content {
+  position: absolute;
+  top: -100%;
+  left: 1rem;
+  z-index: 9999;
+  padding: 0.75rem 1.5rem;
+  background: hsl(var(--primary));
+  color: hsl(var(--primary-foreground));
+  border-radius: var(--radius);
+  font-weight: 600;
+  text-decoration: none;
+  transition: top 0.2s;
+}
+.skip-to-content:focus {
+  top: 1rem;
+}
+
+@layer base {
+  :root,
+  [data-theme="light"] {
+    color-scheme: light;
+
+    /* Camada 1: Primitivas (Light) */
+    --neutral-50: #F6FAFA;
+    --neutral-100: #E3EDEE;
+    --neutral-200: #CFE0E2;
+    --neutral-300: #ADC8CB;
+    --neutral-500: #5C7175;
+    --neutral-700: #3F5558;
+    --neutral-900: #0A0F10;
+    --neutral-950: #04201C;
+
+    --teal-400: #2DD4BF;
+    --teal-500: #14B8A6;
+    --teal-600: #0D9488;
+    --teal-700: #0F766E;
+    --teal-800: #115E59;
+    --teal-950: #04201C;
+
+    /* Camada 2: Semânticas (Light Mode Refatorado - SPEC-095) */
+    --surface-anchor: 0 0% 100%;
+    --surface-anchor-rgb: 255 255 255;
+    --surface-base: 240 5% 98%;
+    --surface-base-rgb: 250 250 250;
+    --surface-alt: 0 0% 100%;
+    --surface-alt-rgb: 255 255 255;
+
+    --bg-base-rgb: 255 255 255;
+    --bg-base: #FFFFFF;
+    --bg-surface-rgb: 255 255 255;
+    --bg-surface: #FFFFFF;
+    --bg-elevated-rgb: 255 255 255;
+    --bg-elevated: #FFFFFF;
+    --bg-overlay: rgba(255, 255, 255, 0.85);
+
+    --border-subtle-rgb: 244 244 245;
+    --border-subtle: #F4F4F5;
+    --border-default-rgb: 228 228 231;
+    --border-default: #E4E4E7;
+    --border-strong-rgb: 212 212 216;
+    --border-strong: #D4D4D8;
+
+    --text-primary-rgb: 9 9 11;
+    --text-primary: #09090B;
+    --text-secondary-rgb: 82 82 91;
+    --text-secondary: #52525B;
+    --text-muted-rgb: 113 113 122;
+    --text-muted: #71717A;
+    --text-on-brand-rgb: 4 32 28;
+    --text-on-brand: #04201C;
+    --text-brand-rgb: 15 118 110;
+    --text-brand: #0F766E;
+
+    --brand-rgb: 45 212 191;
+    --brand: #2DD4BF;
+    --brand-hover-rgb: 13 148 136;
+    --brand-hover: #0D9488;
+    --brand-active-rgb: 17 94 89;
+    --brand-active: #115E59;
+    --brand-subtle: rgba(15, 118, 110, 0.10);
+
+    --accent-blue-rgb: 3 105 161;
+    --accent-blue: #0369A1;
+    --accent-blue-subtle: rgba(3, 105, 161, 0.10);
+    --accent-violet-rgb: 109 40 217;
+    --accent-violet: #6D28D9;
+    --accent-violet-subtle: rgba(109, 40, 217, 0.10);
+    --accent-amber-rgb: 180 83 9;
+    --accent-amber: #B45309;
+    --accent-amber-subtle: rgba(180, 83, 9, 0.10);
+
+    --success-rgb: 21 128 61;
+    --success: #15803D;
+    --success-subtle: rgba(21, 128, 61, 0.10);
+    --warning-rgb: 180 83 9;
+    --warning: #B45309;
+    --warning-subtle: rgba(180, 83, 9, 0.10);
+    --danger-rgb: 185 28 28;
+    --danger: #B91C1C;
+    --danger-subtle: rgba(185, 28, 28, 0.10);
+
+    --focus-ring-rgb: 15 118 110;
+    --focus-ring: #0F766E;
+    --glow-brand: rgba(15, 118, 110, 0.15);
+
+    --shadow-sm: 0 1px 2px 0 rgba(10, 15, 16, 0.05);
+    --shadow-md: 0 4px 6px -1px rgba(10, 15, 16, 0.08), 0 2px 4px -2px rgba(10, 15, 16, 0.05);
+    --shadow-lg: 0 10px 15px -3px rgba(10, 15, 16, 0.10), 0 4px 6px -4px rgba(10, 15, 16, 0.05);
+
+    --radius: 0.5rem;
+  }
+
+  [data-theme="dark"],
+  .dark {
+    color-scheme: dark;
+
+    /* Camada 1: Primitivas (Dark) */
+    --neutral-50: #F2F7F7;
+    --neutral-300: #9DB0B3;
+    --neutral-500: #71868A;
+    --neutral-700: #33464A;
+    --neutral-800: #243336;
+    --neutral-850: #1A2527;
+    --neutral-900: #141D1F;
+    --neutral-925: #0F1617;
+    --neutral-950: #0A0F10;
+
+    --teal-300: #5EEAD4;
+    --teal-400: #2DD4BF;
+    --teal-500: #14B8A6;
+    --teal-950: #04201C;
+
+    /* Camada 2: Semânticas (Dark) */
+    --surface-anchor: 190 23% 5.0%;
+    --surface-anchor-rgb: 10 15 16;
+    --surface-base: 190 23% 8.5%;
+    --surface-base-rgb: 17 24 26;
+    --surface-alt: 190 23% 12.0%;
+    --surface-alt-rgb: 24 34 37;
+
+    --bg-base-rgb: 10 15 16;
+    --bg-base: #0A0F10;
+    --bg-surface-rgb: 15 22 23;
+    --bg-surface: #0F1617;
+    --bg-elevated-rgb: 20 29 31;
+    --bg-elevated: #141D1F;
+    --bg-overlay: rgba(10, 15, 16, 0.85);
+
+    --border-subtle-rgb: 26 37 39;
+    --border-subtle: #1A2527;
+    --border-default-rgb: 36 51 54;
+    --border-default: #243336;
+    --border-strong-rgb: 51 70 74;
+    --border-strong: #33464A;
+
+    --text-primary-rgb: 242 247 247;
+    --text-primary: #F2F7F7;
+    --text-secondary-rgb: 157 176 179;
+    --text-secondary: #9DB0B3;
+    --text-muted-rgb: 113 134 138;
+    --text-muted: #71868A;
+    --text-on-brand-rgb: 4 32 28;
+    --text-on-brand: #04201C;
+    --text-brand-rgb: 45 212 191;
+    --text-brand: #2DD4BF;
+
+    --brand-rgb: 45 212 191;
+    --brand: #2DD4BF;
+    --brand-hover-rgb: 94 234 212;
+    --brand-hover: #5EEAD4;
+    --brand-active-rgb: 20 184 166;
+    --brand-active: #14B8A6;
+    --brand-subtle: rgba(45, 212, 191, 0.12);
+
+    --accent-blue-rgb: 56 189 248;
+    --accent-blue: #38BDF8;
+    --accent-blue-subtle: rgba(56, 189, 248, 0.12);
+    --accent-violet-rgb: 167 139 250;
+    --accent-violet: #A78BFA;
+    --accent-violet-subtle: rgba(167, 139, 250, 0.12);
+    --accent-amber-rgb: 251 191 36;
+    --accent-amber: #FBBF24;
+    --accent-amber-subtle: rgba(251, 191, 36, 0.12);
+
+    --success-rgb: 74 222 128;
+    --success: #4ADE80;
+    --success-subtle: rgba(74, 222, 128, 0.12);
+    --warning-rgb: 251 191 36;
+    --warning: #FBBF24;
+    --warning-subtle: rgba(251, 191, 36, 0.12);
+    --danger-rgb: 248 113 113;
+    --danger: #F87171;
+    --danger-subtle: rgba(248, 113, 113, 0.12);
+
+    --focus-ring-rgb: 45 212 191;
+    --focus-ring: #2DD4BF;
+    --glow-brand: rgba(45, 212, 191, 0.25);
+
+    --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.35);
+    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.45), 0 2px 4px -2px rgba(0, 0, 0, 0.35);
+    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.55), 0 4px 6px -4px rgba(0, 0, 0, 0.45);
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground antialiased;
+  }
+}
+
+@layer utilities {
+  .glass {
+    @apply bg-background/80 backdrop-blur-md border-b border-border/50;
+  }
+  .text-gradient {
+    @apply text-foreground;
+  }
+  .bg-gradient-accent {
+    @apply bg-gradient-to-r from-[#10B981] to-[#059669];
+  }
+  .noise {
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.05'/%3E%3C/svg%3E");
+  }
+}
+
+/* ─────────────────────────────────────────────────────────────
+   PERFORMANCE: content-visibility para seções below-the-fold
+   Adia o trabalho de layout/paint, reduzindo Speed Index e LCP.
+   contain-intrinsic-size evita CLS ao reservar o espaço antes
+   do conteúdo ser renderizado.
+───────────────────────────────────────────────────────────── */
+#sobre,
+#servicos,
+#tecnologias,
+#diferenciais,
+#autoridade,
+#contato {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 600px;
+}
+
+/* ─────────────────────────────────────────────────────────────
+   PERFORMANCE: will-change para a faixa animada de tecnologias
+   Promove o elemento à camada do compositor, eliminando o warning
+   "Avoid non-composited animations" do Lighthouse.
+───────────────────────────────────────────────────────────── */
+.tech-band-track {
+  will-change: transform;
+}
+
+/* ─────────────────────────────────────────────────────────────
+   ACESSIBILIDADE: respeitar prefers-reduced-motion nas
+   animações de scroll infinito da seção de tecnologias.
+───────────────────────────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  .tech-band-track {
+    animation: none !important;
+    will-change: auto;
+  }
+}
+
+/* ─────────────────────────────────────────────────────────────
+   ACESSIBILIDADE: Restauração de separação física em alto contraste (forced-colors)
+───────────────────────────────────────────────────────────── */
+@media (forced-colors: active) {
+  .section-wrapper {
+    border-top: 1px solid ButtonBorder;
+  }
+  .section-wrapper[data-tone="anchor"]:first-of-type,
+  header + main > .section-wrapper:first-of-type {
+    border-top: none;
+  }
+  footer {
+    border-top: 1px solid ButtonBorder;
+  }
+}
+
+/* ─────────────────────────────────────────────────────────────
+   TRANSIÇÃO SUAVE: Troca de tema com respeito a prefers-reduced-motion
+───────────────────────────────────────────────────────────── */
+@media (prefers-reduced-motion: no-preference) {
+  body,
+  header,
+  footer,
+  .section-wrapper {
+    transition: background-color 0.25s ease, color 0.25s ease, border-color 0.25s ease;
+  }
+}
+
+/* ─────────────────────────────────────────────────────────────
+   SISTEMA EDITORIAL DE TIPOGRAFIA E ESPAÇAMENTO (SPEC-096)
+   Inspirado no padrão editorial B2B (Codeminer42, Stripe, Vercel)
+───────────────────────────────────────────────────────────── */
+@layer components {
+  .editorial-container {
+    width: min(100% - 32px, 1280px);
+    max-width: 1280px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 0;
+    padding-right: 0;
+  }
+  @media (min-width: 640px) {
+    .editorial-container {
+      width: min(100% - 48px, 1280px);
+    }
+  }
+}
+
+@layer utilities {
+  .editorial-h1 {
+    font-size: clamp(3.25rem, 6vw, 5.5rem);
+    font-weight: 700;
+    line-height: 0.98;
+    letter-spacing: -0.055em;
+  }
+  .editorial-h2 {
+    font-size: clamp(2.25rem, 4vw, 3.75rem);
+    font-weight: 700;
+    line-height: 1.05;
+    letter-spacing: -0.045em;
+  }
+  .editorial-h3 {
+    font-size: clamp(1.35rem, 2.2vw, 2rem);
+    font-weight: 600;
+    line-height: 1.15;
+    letter-spacing: -0.025em;
+  }
+  .editorial-body {
+    font-size: clamp(1rem, 1.15vw, 1.125rem);
+    font-weight: 400;
+    line-height: 1.65;
+    letter-spacing: -0.01em;
+  }
+  .editorial-eyebrow {
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    line-height: 1.3;
+    text-transform: uppercase;
+  }
+
+  /* Chanfro simétrico nos 4 cantos (Octógono de precisão - Full Bevel / 4-Corner Chamfer - corte de 12px) (SPEC-104) */
+  .btn-bevel-4,
+  .btn-chamfer {
+    clip-path: polygon(
+      12px 0%,
+      calc(100% - 12px) 0%,
+      100% 12px,
+      100% calc(100% - 12px),
+      calc(100% - 12px) 100%,
+      12px 100%,
+      0% calc(100% - 12px),
+      0% 12px
+    );
+  }
+
+  /* Versão para botões menores / compactos (corte de 8px) (SPEC-104) */
+  .btn-bevel-4-sm,
+  .btn-chamfer-sm {
+    clip-path: polygon(
+      8px 0%,
+      calc(100% - 8px) 0%,
+      100% 8px,
+      100% calc(100% - 8px),
+      calc(100% - 8px) 100%,
+      8px 100%,
+      0% calc(100% - 8px),
+      0% 8px
+    );
+  }
+
+  /* Chanfro duplo equilibrado (superior direito + inferior esquerdo) */
+  .btn-chamfer-dual {
+    clip-path: polygon(12px 0, calc(100% - 12px) 0, 100% 12px, 100% calc(100% - 12px), calc(100% - 12px) 100%, 0 100%, 0 12px);
+  }
+
+  /* Sombreamento chanfrado em camadas e traço contínuo em 8 lados (SPEC-104) */
+  .btn-bevel-shadow {
+    filter: 
+      drop-shadow(1px 0px 0px #ffffff)
+      drop-shadow(-1px 0px 0px #ffffff)
+      drop-shadow(0px 1px 0px #ffffff)
+      drop-shadow(0px -1px 0px #ffffff)
+      drop-shadow(5px 5px 0px #ffffff);
+    transition: filter 0.15s ease, transform 0.15s ease;
+  }
+  .btn-bevel-shadow:active {
+    transform: translate(2px, 2px);
+    filter: 
+      drop-shadow(1px 0px 0px #ffffff)
+      drop-shadow(-1px 0px 0px #ffffff)
+      drop-shadow(0px 1px 0px #ffffff)
+      drop-shadow(0px -1px 0px #ffffff)
+      drop-shadow(3px 3px 0px #ffffff);
+  }
+
+  :root:not(.dark) .btn-bevel-shadow {
+    filter: 
+      drop-shadow(1px 0px 0px #04201c)
+      drop-shadow(-1px 0px 0px #04201c)
+      drop-shadow(0px 1px 0px #04201c)
+      drop-shadow(0px -1px 0px #04201c)
+      drop-shadow(5px 5px 0px #04201c);
+  }
+  :root:not(.dark) .btn-bevel-shadow:active {
+    filter: 
+      drop-shadow(1px 0px 0px #04201c)
+      drop-shadow(-1px 0px 0px #04201c)
+      drop-shadow(0px 1px 0px #04201c)
+      drop-shadow(0px -1px 0px #04201c)
+      drop-shadow(3px 3px 0px #04201c);
+  }
+
+  /* Versão para botões compactos (sm) */
+  .btn-bevel-shadow-sm {
+    filter: 
+      drop-shadow(1px 0px 0px #ffffff)
+      drop-shadow(-1px 0px 0px #ffffff)
+      drop-shadow(0px 1px 0px #ffffff)
+      drop-shadow(0px -1px 0px #ffffff)
+      drop-shadow(3px 3px 0px #ffffff);
+    transition: filter 0.15s ease, transform 0.15s ease;
+  }
+  .btn-bevel-shadow-sm:active {
+    transform: translate(1px, 1px);
+    filter: 
+      drop-shadow(1px 0px 0px #ffffff)
+      drop-shadow(-1px 0px 0px #ffffff)
+      drop-shadow(0px 1px 0px #ffffff)
+      drop-shadow(0px -1px 0px #ffffff)
+      drop-shadow(2px 2px 0px #ffffff);
+  }
+  :root:not(.dark) .btn-bevel-shadow-sm {
+    filter: 
+      drop-shadow(1px 0px 0px #04201c)
+      drop-shadow(-1px 0px 0px #04201c)
+      drop-shadow(0px 1px 0px #04201c)
+      drop-shadow(0px -1px 0px #04201c)
+      drop-shadow(3px 3px 0px #04201c);
+  }
+  :root:not(.dark) .btn-bevel-shadow-sm:active {
+    filter: 
+      drop-shadow(1px 0px 0px #04201c)
+      drop-shadow(-1px 0px 0px #04201c)
+      drop-shadow(0px 1px 0px #04201c)
+      drop-shadow(0px -1px 0px #04201c)
+      drop-shadow(2px 2px 0px #04201c);
+  }
+
+  /* Versão com branco absoluto (idêntica à captura de referência) */
+  .btn-bevel-shadow-white {
+    filter: 
+      drop-shadow(1px 0px 0px #ffffff)
+      drop-shadow(-1px 0px 0px #ffffff)
+      drop-shadow(0px 1px 0px #ffffff)
+      drop-shadow(0px -1px 0px #ffffff)
+      drop-shadow(5px 5px 0px #ffffff);
+    transition: filter 0.15s ease, transform 0.15s ease;
+  }
+  .btn-bevel-shadow-white:active {
+    transform: translate(2px, 2px);
+    filter: 
+      drop-shadow(1px 0px 0px #ffffff)
+      drop-shadow(-1px 0px 0px #ffffff)
+      drop-shadow(0px 1px 0px #ffffff)
+      drop-shadow(0px -1px 0px #ffffff)
+      drop-shadow(3px 3px 0px #ffffff);
+  }
+
+  /* Versão com cores institucionais da marca (Teal / Emerald) */
+  .btn-bevel-shadow-brand {
+    filter: 
+      drop-shadow(1px 0px 0px #2dd4bf)
+      drop-shadow(-1px 0px 0px #2dd4bf)
+      drop-shadow(0px 1px 0px #2dd4bf)
+      drop-shadow(0px -1px 0px #2dd4bf)
+      drop-shadow(5px 5px 0px rgba(45, 212, 191, 0.9));
+    transition: filter 0.15s ease, transform 0.15s ease;
+  }
+  .btn-bevel-shadow-brand:active {
+    transform: translate(2px, 2px);
+    filter: 
+      drop-shadow(1px 0px 0px #2dd4bf)
+      drop-shadow(-1px 0px 0px #2dd4bf)
+      drop-shadow(0px 1px 0px #2dd4bf)
+      drop-shadow(0px -1px 0px #2dd4bf)
+      drop-shadow(3px 3px 0px rgba(45, 212, 191, 0.9));
+  }
+}

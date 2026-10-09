@@ -17,6 +17,9 @@ dist-ssr/
 .vinxi/
 .tanstack/**
 .nitro/
+*.tsbuildinfo
+vite.config.js
+vite.config.d.ts
 
 # Wrangler / Cloudflare / Serverless
 .wrangler/
