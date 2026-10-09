@@ -115,6 +115,7 @@ product-catalog/
 
 Todas as entregas obedecem ao protocolo **Universal SDD**:
 - `ADR-001`: Decisão arquitetural de Preço Único, Home Neutra e Propostas Dinâmicas sob Demanda
+- `ADR-002`: Foco Exclusivo no Nicho de Odontologia na Etapa Inicial
 - `SPEC-001` / `TASK-001-01` / `REVIEW-001`: Estrutura inicial e Design Tokens EPM DevTech
 - `SPEC-002` / `TASK-002-01` / `REVIEW-002`: Infraestrutura Docker e Nginx SPA
 - `SPEC-003` / `TASK-003-01` / `REVIEW-003`: Pipeline CI/CD GitHub Actions
@@ -124,6 +125,7 @@ Todas as entregas obedecem ao protocolo **Universal SDD**:
 - `SPEC-007` / `TASK-007-01` / `REVIEW-007`: Incluso vs Extra, Segurança, FAQ Accordion, Contrato e Rodapé
 - `SPEC-008` / `TASK-008-01` / `REVIEW-008`: Rotas, Propostas Nominais, Noindex, Analytics e Documentação
 - `SPEC-009` / `TASK-009-01` / `REVIEW-009`: Preço Único, Home Neutra, Rota /interno DEV e Propostas Dinâmicas sob Demanda
+- `SPEC-010` / `TASK-010-01` / `REVIEW-010`: Foco Inicial Exclusivo no Nicho de Odontologia
 
 ---
 

@@ -54,11 +54,15 @@ async function main() {
 
     const responsavel = await rl.question("3. Nome do responsável / A/C (opcional): ");
 
-    const nichoSlug = (
-      await rl.question("4. Nicho (odontologia / advocacia / barbearia) [odontologia]: ")
+    const nichoSlugInput = (
+      await rl.question("4. Nicho [odontologia]: ")
     )
       .trim()
-      .toLowerCase() || "odontologia";
+      .toLowerCase();
+    const nichoSlug = nichoSlugInput || "odontologia";
+    if (nichoSlug !== "odontologia") {
+      console.warn("Aviso: Nesta etapa inicial apenas 'odontologia' está ativo. Usando 'odontologia'.");
+    }
 
     const profsInput = await rl.question("5. Quantidade de profissionais [1]: ");
     const profissionais = parseInt(profsInput, 10) || 1;

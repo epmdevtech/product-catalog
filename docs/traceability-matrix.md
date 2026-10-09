@@ -20,8 +20,10 @@ bf935e5` feat(niche): implementar arquitetura multinicho, motor de pricing e tes
 2cf1150` feat(sections): adicionar secoes incluso vs extra, seguranca, faq, contrato e rodape cta | [REVIEW-007-incluso-seguranca-faq-contrato-rodape.md](../reviews/REVIEW-007-incluso-seguranca-faq-contrato-rodape.md) (Not recorded) |
 | [SPEC-008](../specs/SPEC-008-rotas-propostas-noindex-analitica-e-documentacao.md) | Approved | [TASK-008-01](../tasks/TASK-008-01-rotas-propostas-noindex-analytics-readme.md) (Completed) | `
 2354051` feat(routes): implementar roteamento, propostas nominais, noindex, analytics e readme | [REVIEW-008-rotas-propostas-noindex-analytics-readme.md](../reviews/REVIEW-008-rotas-propostas-noindex-analytics-readme.md) (Not recorded) |
-| [SPEC-009](../specs/SPEC-009-preco-unico-home-neutra-propostas-dinamicas.md) | Approved | [TASK-009-01](../tasks/TASK-009-01-refatoracao-preco-unico-home-neutra-propostas.md) (Completed) | — | [REVIEW-009-preco-unico-home-neutra-propostas-dinamicas.md](../reviews/REVIEW-009-preco-unico-home-neutra-propostas-dinamicas.md) (Not recorded) |
+| [SPEC-009](../specs/SPEC-009-preco-unico-home-neutra-propostas-dinamicas.md) | Approved | [TASK-009-01](../tasks/TASK-009-01-refatoracao-preco-unico-home-neutra-propostas.md) (Completed) | `05852136` docs: suporte ao dominio catalogo.epmdevtech.com.br<br>`
+8ca484c` feat(architecture): centralizar preco unico, home neutra, painel dev e propostas dinamicas | [REVIEW-009-preco-unico-home-neutra-propostas-dinamicas.md](../reviews/REVIEW-009-preco-unico-home-neutra-propostas-dinamicas.md) (Not recorded) |
+| [SPEC-010](../specs/SPEC-010-etapa-inicial-exclusiva-odontologia.md) | Approved | [TASK-010-01](../tasks/TASK-010-01-foco-etapa-inicial-odontologia.md) (Completed) | — | [REVIEW-010-etapa-inicial-exclusiva-odontologia.md](../reviews/REVIEW-010-etapa-inicial-exclusiva-odontologia.md) (Not recorded) |
 
 ## Lacunas de rastreabilidade (Traceability gaps)
 
-- `TASK-009-01` não possui commit com `Task-Ref: TASK-009-01`.
+- `TASK-010-01` não possui commit com `Task-Ref: TASK-010-01`.

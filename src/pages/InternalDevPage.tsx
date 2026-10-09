@@ -114,7 +114,7 @@ export const InternalDevPage: React.FC = () => {
               <form onSubmit={handleGenerateSlug} className="flex flex-col sm:flex-row gap-3">
                 <input
                   type="text"
-                  placeholder="Ex: clinica-exemplo, escritorio-silva"
+                  placeholder="Ex: clinica-exemplo, consultorio-odonto"
                   value={nomeCurtoInput}
                   onChange={(e) => setNomeCurtoInput(e.target.value)}
                   className="flex-1 px-3.5 py-2 rounded-lg border border-border-default bg-surface text-foreground text-sm font-medium focus:outline-none focus:ring-2 focus:ring-focus-ring"
