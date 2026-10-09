@@ -1,5 +1,6 @@
 import React from "react";
-import { ShieldCheck, Server, Heart } from "lucide-react";
+import { ShieldCheck, Server, MessageSquare, Mail } from "lucide-react";
+import { CONTACT_INFO, getWhatsAppUrl } from "@/data/contact";
 
 export const Footer: React.FC = () => {
   const currentYear = new Date().getFullYear();
@@ -73,18 +74,31 @@ export const Footer: React.FC = () => {
               Atendimento & Suporte
             </h4>
             <div className="space-y-2 text-xs text-text-secondary">
-              <p>Segunda a Sexta, das 09h às 18h (BRT)</p>
-              <p>
-                E-mail:{" "}
+              <p>{CONTACT_INFO.horarioAtendimento}</p>
+              <p className="flex items-center gap-1.5">
+                <MessageSquare className="h-3.5 w-3.5 text-brand shrink-0" />
+                <span>WhatsApp:</span>
                 <a
-                  href="mailto:contato@epmdevtech.com.br"
-                  className="text-brand hover:underline font-medium"
+                  href={getWhatsAppUrl()}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-brand hover:underline font-semibold"
                 >
-                  contato@epmdevtech.com.br
+                  {CONTACT_INFO.whatsappFormatted}
                 </a>
               </p>
-              <p className="text-[11px] text-text-muted">
-                São Paulo / SP • Atendimento remoto para todo o Brasil
+              <p className="flex items-center gap-1.5">
+                <Mail className="h-3.5 w-3.5 text-brand shrink-0" />
+                <span>E-mail:</span>
+                <a
+                  href={`mailto:${CONTACT_INFO.email}`}
+                  className="text-brand hover:underline font-semibold"
+                >
+                  {CONTACT_INFO.email}
+                </a>
+              </p>
+              <p className="text-[11px] text-text-muted pt-1">
+                Atendimento remoto especializado para todo o Brasil
               </p>
             </div>
           </div>
@@ -97,10 +111,6 @@ export const Footer: React.FC = () => {
             <span>Privacidade & LGPD</span>
             <span>•</span>
             <span>Contrato de Nível de Serviço (SLA)</span>
-            <span>•</span>
-            <span className="flex items-center gap-1">
-              Desenvolvido com <Heart className="h-3 w-3 text-brand fill-current" /> pela EPM
-            </span>
           </div>
         </div>
       </div>

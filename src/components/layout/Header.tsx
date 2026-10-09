@@ -2,6 +2,7 @@ import React from "react";
 import { useTheme } from "next-themes";
 import { Moon, Sun, MessageCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { getWhatsAppUrl } from "@/data/contact";
 
 export const Header: React.FC = () => {
   const { theme, setTheme } = useTheme();
@@ -56,7 +57,7 @@ export const Header: React.FC = () => {
             className="hidden sm:inline-flex gap-2 text-xs font-semibold"
           >
             <a
-              href="https://wa.me/5585994246990?text=Ol%C3%A1!%20Estou%20na%20p%C3%A1gina%20de%20propostas%20da%20EPM%20DevTech%20e%20gostaria%20de%20tirar%20uma%20d%C3%BAvida."
+              href={getWhatsAppUrl("Olá! Estou na página de propostas da EPM DevTech e gostaria de tirar uma dúvida.")}
               target="_blank"
               rel="noopener noreferrer"
             >

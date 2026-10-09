@@ -3,6 +3,7 @@ import { MessageSquare, Mail, ArrowRight, ShieldCheck } from "lucide-react";
 import { track } from "@vercel/analytics";
 import { useNiche } from "@/contexts/NicheContext";
 import { Button } from "@/components/ui/button";
+import { CONTACT_INFO, getWhatsAppUrl } from "@/data/contact";
 
 export const FinalCtaSection: React.FC = () => {
   const { niche, proposal } = useNiche();
@@ -19,9 +20,7 @@ export const FinalCtaSection: React.FC = () => {
     }
   };
 
-  const whatsappUrl = `https://wa.me/5511999999999?text=${encodeURIComponent(
-    niche.whatsappMensagemTemplate
-  )}`;
+  const whatsappUrl = getWhatsAppUrl(niche.whatsappMensagemTemplate);
 
   return (
     <section className="py-20 sm:py-28 relative overflow-hidden bg-surface/50 border-b border-border-default/60">
@@ -61,7 +60,7 @@ export const FinalCtaSection: React.FC = () => {
             size="lg"
             className="w-full sm:w-auto text-sm font-semibold"
           >
-            <a href="mailto:contato@epmdevtech.com.br">
+            <a href={`mailto:${CONTACT_INFO.email}`}>
               <Mail className="h-4 w-4 mr-2 text-text-muted" />
               <span>Enviar Dúvida por E-mail</span>
             </a>

@@ -8,6 +8,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { pricingTable } from "@/data/pricing";
+import { getWhatsAppUrl } from "@/data/contact";
 
 export const SimulatorSection: React.FC = () => {
   const {
@@ -84,7 +85,7 @@ export const SimulatorSection: React.FC = () => {
     } catch {
       // Ignora erro em dev
     }
-    const url = `https://wa.me/5585994246990?text=${gerarMensagemWhatsApp()}`;
+    const url = getWhatsAppUrl(gerarMensagemWhatsApp());
     window.open(url, "_blank", "noopener,noreferrer");
   };
 
