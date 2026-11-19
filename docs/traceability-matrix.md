@@ -9,6 +9,7 @@ Gerado por `scripts/generate_traceability.py`. Não edite manualmente; execute n
 | [SPEC-002](../specs/SPEC-002-infraestrutura-docker-e-docker-compose.md) | Approved | [TASK-002-01](../tasks/TASK-002-01-dockerfile-e-docker-compose.md) (Completed) | `
 699e567` feat(infra): configurar dockerfile e docker-compose com nginx | [REVIEW-002-infraestrutura-docker.md](../reviews/REVIEW-002-infraestrutura-docker.md) (Not recorded) |
 | [SPEC-003](../specs/SPEC-003-esteira-ci-cd-github-actions.md) | Approved | [TASK-003-01](../tasks/TASK-003-01-github-actions-pipeline-quality-gates.md) (Completed) | `
+10d8310` fix(ci): corrigir include do tsconfig para typecheck em pipeline<br>`
 c9477f8` ci: configurar pipeline github actions com quality gates | [REVIEW-003-esteira-ci-cd.md](../reviews/REVIEW-003-esteira-ci-cd.md) (Not recorded) |
 | [SPEC-004](../specs/SPEC-004-arquitetura-multinicho-pricing-e-testes.md) | Approved | [TASK-004-01](../tasks/TASK-004-01-tipos-niche-config-configs-iniciais.md) (Completed) | `
 bf935e5` feat(niche): implementar arquitetura multinicho, motor de pricing e testes de guarda | [REVIEW-004-arquitetura-multinicho-pricing.md](../reviews/REVIEW-004-arquitetura-multinicho-pricing.md) (Not recorded) |
@@ -23,9 +24,12 @@ bf935e5` feat(niche): implementar arquitetura multinicho, motor de pricing e tes
 | [SPEC-009](../specs/SPEC-009-preco-unico-home-neutra-propostas-dinamicas.md) | Approved | [TASK-009-01](../tasks/TASK-009-01-refatoracao-preco-unico-home-neutra-propostas.md) (Completed) | `
 0585213` docs: suporte ao dominio catalogo.epmdevtech.com.br<br>`
 8ca484c` feat(architecture): centralizar preco unico, home neutra, painel dev e propostas dinamicas | [REVIEW-009-preco-unico-home-neutra-propostas-dinamicas.md](../reviews/REVIEW-009-preco-unico-home-neutra-propostas-dinamicas.md) (Not recorded) |
-| [SPEC-010](../specs/SPEC-010-etapa-inicial-exclusiva-odontologia.md) | Approved | [TASK-010-01](../tasks/TASK-010-01-foco-etapa-inicial-odontologia.md) (Completed) | `79aa9835` feat(niche): focar etapa inicial exclusivamente no nicho de odontologia | [REVIEW-010-etapa-inicial-exclusiva-odontologia.md](../reviews/REVIEW-010-etapa-inicial-exclusiva-odontologia.md) (Not recorded) |
-| [SPEC-011](../specs/SPEC-011-centralizacao-contato-e-ajustes-footer.md) | Approved | [TASK-011-01](../tasks/TASK-011-01-atualizacao-contatos-e-limpeza-footer.md) (Completed) | — | [REVIEW-011-centralizacao-contato-e-ajustes-footer.md](../reviews/REVIEW-011-centralizacao-contato-e-ajustes-footer.md) (Not recorded) |
+| [SPEC-010](../specs/SPEC-010-etapa-inicial-exclusiva-odontologia.md) | Approved | [TASK-010-01](../tasks/TASK-010-01-foco-etapa-inicial-odontologia.md) (Completed) | `
+79aa983` feat(niche): focar etapa inicial exclusivamente no nicho de odontologia | [REVIEW-010-etapa-inicial-exclusiva-odontologia.md](../reviews/REVIEW-010-etapa-inicial-exclusiva-odontologia.md) (Not recorded) |
+| [SPEC-011](../specs/SPEC-011-centralizacao-contato-e-ajustes-footer.md) | Approved | [TASK-011-01](../tasks/TASK-011-01-atualizacao-contatos-e-limpeza-footer.md) (Completed) | `
+2b84906` feat(contact): centralizar dados de contato e atualizar rodape | [REVIEW-011-centralizacao-contato-e-ajustes-footer.md](../reviews/REVIEW-011-centralizacao-contato-e-ajustes-footer.md) (Not recorded) |
+| [SPEC-012](../specs/SPEC-012-proxy-mao-de-concha-worker.md) | Approved for implementation | [TASK-012-01](../tasks/TASK-012-01-proxy-mao-de-concha-worker.md) (In review) | `ffe56178` feat(proxy): rotear host mao de concha ao worker | — |
 
 ## Lacunas de rastreabilidade (Traceability gaps)
 
-- `TASK-011-01` não possui commit com `Task-Ref: TASK-011-01`.
+- Nenhuma detectada nos artefatos verificados.

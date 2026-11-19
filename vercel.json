@@ -4,11 +4,24 @@
   "headers": [
     {
       "source": "/(.*)",
+      "has": [
+        {
+          "type": "host",
+          "value": {
+            "neq": "mao-de-concha.epmdevtech.com.br"
+          }
+        }
+      ],
       "headers": [
         {
           "key": "X-Robots-Tag",
           "value": "noindex, nofollow, noarchive, nosnippet"
-        },
+        }
+      ]
+    },
+    {
+      "source": "/(.*)",
+      "headers": [
         {
           "key": "X-Content-Type-Options",
           "value": "nosniff"
@@ -25,6 +38,16 @@
     }
   ],
   "rewrites": [
+    {
+      "source": "/:path*",
+      "has": [
+        {
+          "type": "host",
+          "value": "mao-de-concha.epmdevtech.com.br"
+        }
+      ],
+      "destination": "https://mao-de-concha.elessandrodev.workers.dev/:path*"
+    },
     {
       "source": "/(.*)",
       "destination": "/index.html"
