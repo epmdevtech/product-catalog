@@ -127,6 +127,8 @@ Todas as entregas obedecem ao protocolo **Universal SDD**:
 - `SPEC-009` / `TASK-009-01` / `REVIEW-009`: Preço Único, Home Neutra, Rota /interno DEV e Propostas Dinâmicas sob Demanda
 - `SPEC-010` / `TASK-010-01` / `REVIEW-010`: Foco Inicial Exclusivo no Nicho de Odontologia
 - `SPEC-011` / `TASK-011-01` / `REVIEW-011`: Centralização de Dados de Contato e Ajustes de Rodapé
+- `SPEC-012` / `TASK-012-01`: Proxy por host do Mão de Concha para Worker Cloudflare e exceção de indexação
+- `ADR-003`: Proxy por host para o Worker Mão de Concha
 
 ---
 
